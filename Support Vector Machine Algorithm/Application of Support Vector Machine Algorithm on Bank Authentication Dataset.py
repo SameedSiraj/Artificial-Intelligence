@@ -1,0 +1,52 @@
+import numpy as np
+from sklearn import metrics
+from sklearn import datasets
+from sklearn.svm import SVC
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score,classification_report, confusion_matrix
+import pandas as pd, scipy
+from numpy import genfromtxt
+from sklearn.metrics.pairwise import chi2_kernel
+
+bankdata= pd.read_csv("bill_authentication.csv")
+bankdata.shape
+
+x = bankdata.drop('Class',axis=1)
+y = bankdata['Class']
+
+X_train,X_test, Y_train, Y_test= train_test_split(x,y,test_size=0.50)
+svclassifier=SVC(kernel='linear')
+svclassifier.fit(X_train,Y_train)
+Y_pred=svclassifier.predict(X_test)
+
+print("\nAccuracy Score :",metrics.accuracy_score(Y_test, Y_pred))
+print("\nConfusion Matrix :")
+print(metrics.confusion_matrix(Y_test, Y_pred))
+print("\nClassification Report :")
+print(metrics.classification_report(Y_test, Y_pred))
+
+
+X_train,X_test, Y_train, Y_test= train_test_split(x,y,test_size=0.30)
+svclassifier=SVC(kernel='linear')
+svclassifier.fit(X_train,Y_train)
+Y_pred=svclassifier.predict(X_test)
+
+print("\nAccuracy Score :",metrics.accuracy_score(Y_test, Y_pred))
+print("\nConfusion Matrix :")
+print(metrics.confusion_matrix(Y_test, Y_pred))
+print("\nClassification Report :")
+print(metrics.classification_report(Y_test, Y_pred))
+
+
+X_train,X_test, Y_train, Y_test= train_test_split(x,y,test_size=0.10)
+svclassifier=SVC(kernel='linear')
+svclassifier.fit(X_train,Y_train)
+Y_pred=svclassifier.predict(X_test)
+
+print("\nAccuracy Score :",metrics.accuracy_score(Y_test, Y_pred))
+print("\nConfusion Matrix :")
+print(metrics.confusion_matrix(Y_test, Y_pred))
+print("\nClassification Report :")
+print(metrics.classification_report(Y_test, Y_pred))
+
+
